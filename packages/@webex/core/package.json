@@ -1,0 +1,32 @@
+{
+  "name": "@webex/core",
+  "packageManager": "yarn@3.2.0",
+  "scripts": {
+    "start": "echo \"TODO: this script has not been implemented\"",
+    "build": "yarn build:dist && yarn build:docs",
+    "build:dist": "yarn clean:dist && tsc",
+    "build:docs": "yarn clean:docs && yarn build:docs:api:loose && yarn build:docs:api:markdown",
+    "build:docs:api:loose": "yarn clean:docs:api:loose && api-extractor run -c ./config/api-extractor.config.json",
+    "build:docs:api:markdown": "yarn clean:docs:api:markdown && yarn api-documenter markdown -i ./docs/api/loose -o ./docs/api/markdown",
+    "clean": "yarn clean:dist && yarn clean:docs",
+    "clean:dist": "rimraf ./dist",
+    "clean:docs": "yarn clean:docs:api:loose && yarn clean:docs:api:markdown",
+    "clean:docs:api:loose": "rimraf ./docs/api/loose",
+    "clean:docs:api:markdown": "rimraf ./docs/api/markdown",
+    "test": "yarn test:static && yarn test:syntax && yarn test:unit && yarn test:integration && yarn test:performance",
+    "test:integration": "echo \"TODO: this script has not been implemented\"",
+    "test:performance": "echo \"TODO: this script has not been implemented\"",
+    "test:static": "eslint ./src/**",
+    "test:syntax": "tsc --noEmit",
+    "test:unit": "jest -c ./config/jest.config.js"
+  },
+  "devDependencies": {
+    "@microsoft/api-documenter": "^7.16.0",
+    "@microsoft/api-extractor": "^7.19.5",
+    "@types/jest": "^27.4.1",
+    "jest": "^27.5.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.1.4",
+    "typescript": "^4.6.2"
+  }
+}
